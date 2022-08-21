@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="98241450-25c1-49ec-a082-2e05c3a24e49" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="git-classworkFlow" doc:id="bf1f9f40-7a89-40ee-83e1-11effe2f5c1d" >
+		<http:listener doc:name="Listener" doc:id="e70d88c5-7b7b-473c-9918-785f518da69c" config-ref="HTTP_Listener_config" path="git"/>
+		<logger level="INFO" doc:name="Logger" doc:id="38c32fec-480a-4032-9cac-a5e3d79854af" message="Hello it is Git"/>
+		<set-payload value='#["Hello it is payload"]' doc:name="Set Payload" doc:id="f5487bf3-a2b8-4fce-a969-7533907796e8" />
+	</flow>
+</mule>
